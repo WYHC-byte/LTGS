@@ -4,362 +4,263 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>龙腾游戏工作室</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
         }
-        header {
-            background-color: #0078d4;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: white;
+
+        body {
+            background-color: #f5f5f5;
         }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .search-bar {
-            flex-grow: 1;
-            margin: 0 20px;
-        }
-        .search-bar input {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-        .nav {
-            display: flex;
-        }
-        .nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        .banner {
-            background: url('https://picsum.photos/1200/400?random=1') no-repeat center center;
-            background-size: cover;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            position: relative;
-        }
-        .banner h1 {
-            font-size: 48px;
-            margin: 0;
-        }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-        .btn {
-            background-color: #ffcc00;
-            color: #333;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-            display: inline-block;
-        }
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-        }
-        .product-card {
+
+        .header {
             background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            width: 250px;
-            margin: 10px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
-        .product-card img {
-            max-width: 100%;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-        .product-card h3 {
-            margin: 10px 0;
-        }
-        .product-card p {
-            padding: 0 10px;
-        }
-        .product-card .btn {
-            margin-bottom: 15px;
-        }
-        .product-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        }
-        .pagination {
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('xw.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 12rem 2rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
-            margin: 20px 0;
+            align-items: center;
         }
-        .pagination button {
-            margin: 0 5px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #0078d4;
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-btn {
+            background-color: #e63946;
             color: white;
-            cursor: pointer;
-        }
-        .pagination button:disabled {
-            background-color: #ccc;
-        }
-        footer {
-            background-color: #0078d4;
-            padding: 20px;
-            color: white;
-            text-align: center;
-        }
-        footer .footer-links {
-            margin-bottom: 15px;
-        }
-        footer .footer-links a {
-            color: white;
-            margin: 0 10px;
+            padding: 1rem 2rem;
+            border-radius: 30px;
             text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
-        footer p {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-        section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        #subscribe {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        #subscription-form {
-            display: flex;
-            margin-top: 10px;
-        }
-        #subscription-form input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        #subscription-form button {
-            padding: 10px 20px;
-            background-color: #0078d4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        #subscription-form button:hover {
-            background-color: #005a9e;
-        }
-        #subscription-message {
-            margin-top: 15px;
-            color: #0078d4;
-        }
-    </style>
-    <script>
-        let currentPage = 1;
-        const itemsPerPage = 4; // 每页显示的产品数量
-        let filteredProducts = [];
 
-        function searchProducts() {
-            const searchTerm = document.getElementById("search-input").value.toLowerCase();
-            const productCards = document.querySelectorAll(".product-card");
-            filteredProducts = [];
+        .hero-btn:hover {
+            background-color: transparent;
+            border-color: #e63946;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
             
-            productCards.forEach(card => {
-                const title = card.querySelector("h3").innerText.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    card.style.display = "block";
-                    filteredProducts.push(card);
-                } else {
-                    card.style.display = "none";
-                }
-            });
-            currentPage = 1; // 重置当前页
-            updatePagination();
-            showPage(currentPage);
-        }
-
-        function updatePagination() {
-            const paginationContainer = document.getElementById("pagination");
-            paginationContainer.innerHTML = ""; // 清空当前分页内容
-
-            const pageCount = Math.ceil(filteredProducts.length / itemsPerPage);
-            for (let i = 1; i <= pageCount; i++) {
-                const button = document.createElement("button");
-                button.innerText = i;
-                button.onclick = () => showPage(i);
-                paginationContainer.appendChild(button);
+            .hero p {
+                font-size: 1rem;
             }
         }
 
-        function showPage(page) {
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            filteredProducts.forEach((card, index) => {
-                card.style.display = (index >= start && index < end) ? "block" : "none";
-            });
-            currentPage = page;
+        .products-grid {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
         }
 
-        document.getElementById("subscription-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // 防止默认提交行为
-            const email = document.getElementById("email").value;
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
 
-            // 这里可以加入逻辑将电子邮件发送到服务器或进行其他处理
-            // 例如，使用 fetch API 将数据发送到你的后端服务
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
 
-            // 显示成功消息
-            document.getElementById("subscription-message").innerText = "感谢您的订阅！我们会向 " + email + " 发送最新的新闻和优惠信息。";
+        .product-card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .product-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            background-color: #0078d4;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            color: #333;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        footer p {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
             
-            // 清空输入框
-            document.getElementById("email").value = '';
-        });
-    </script>
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">龙腾游戏工作室</div>
+            <div class="nav-links">
+                <a href="#" class="btn">登录</a>
+            </div>
+        </nav>
+    </header>
 
-<header>
-    <div class="logo">龙腾游戏工作室</div>
-    <div class="search-bar">
-        <input type="text" id="search-input" placeholder="搜索..." oninput="searchProducts()">
-    </div>
-    <nav class="nav">
-        <a href="#about">关于我们</a>
-        <a href="#games">游戏介绍</a>
-        <a href="#news">最新动态</a>
-        <a href="#subscribe">订阅新闻</a>
-    </nav>
-</header>
-
-<div class="banner">
-    <div>
+    <section class="hero">
         <h1>规则怪谈 - 虚无小区</h1>
-        <p>体验最新的游戏力做，感受恐怖氛围</p>
-        <a href="https://wyhc-byte.github.io/guize/" class="btn">探索更多</a>
-    </div>
-</div>
-
-<!-- 关于我们 -->
-<section id="about">
-    <h2>关于我们</h2>
-    <p>龙腾游戏工作室专注于开发创新和引人入胜的独立游戏。我们的团队由热爱游戏的开发者组成，致力于为玩家提供最佳的游戏体验。</p>
-</section>
-
-<div class="products">
-    <div class="product-card">
-        <img src="https://picsum.photos/250/150?random=1" alt="产品1">
-        <h3>videoTube</h3>
-        <p>超级强大的视频网站，实时更新最新电影或剧集</p>
-        <a href="https://www.videotube.com" class="btn">了解更多</a>
-    </div>
-    <div class="product-card">
-        <img src="https://picsum.photos/250/150?random=2" alt="产品2">
-        <h3>minecraft网页版</h3>
-        <p>网页设计，无需下载即可尽享游戏乐趣。</p>
-        <a href="https://classic.minecraft.net" class="btn">了解更多</a>
-    </div>
-    <div class="product-card">
-        <img src="https://picsum.photos/250/150?random=3" alt="产品3">
-        <h3>创客小说网(又名品书小说网)</h3>
-        <p>即时更新和转载，随时随地观看独家小说。</p>
-        <a href="https://www.vodtw.com" class="btn">了解更多</a>
-    </div>
-    <div class="product-card">
-        <img src="https://picsum.photos/250/150?random=4" alt="产品4">
-        <h3>codebot（暂未上市）</h3>
-        <p>AI助手，提升编码效率。</p>
-        <a href="#" class="btn">了解更多</a>
-    </div>
-    <div class="product-card">
-        <img src="xw.jpg" alt="产品5">
-        <h3>规则怪谈 - 虚无小区</h3>
-        <p>恐怖规则，至今无人触发的隐藏剧情...</p>
-        <a href="https://wyhc-byte.github.io/guize/" class="btn">了解更多</a>
-    </div>
-    <div class="product-card">
-        <img src="https://picsum.photos/250/150?random=6" alt="产品6">
-        <h3>逃离米花市</h3>
-        <p>柯迷？来对地方了</p>
-        <a href="#" class="btn">了解更多</a>
-    </div>
-    <div class="product-card">
-        <img src="dys.jpg" alt="产品7">
-        <h3>断崖山医院</h3>
-        <p>完蛋！我被护士包围了</p>
-        <a href="#" class="btn">了解更多</a>
-    </div>
-    <div class="product-card">
-        <img src="https://picsum.photos/250/150?random=8" alt="产品8">
-        <h3>校园恋爱物语</h3>
-        <p>军训让哥们送水，来的怎么是高冷校花</p>
-        <a href="#" class="btn">了解更多</a>
-    </div>
-</div>
-
-<div class="pagination" id="pagination"></div>
+        <p>体验最新的游戏力作，感受恐怖氛围</p>
+        <a href="https://wyhc-byte.github.io/guize/" class="hero-btn">探索更多</a>
+    </section>
 
 
-<!-- 最新动态 -->
-<section id="news">
-    <h2>最新动态</h2>
-    <ul>
-        <li>2024年：发布了新游戏《规则怪谈 - 虚无小区》。</li>
-        <li>2023年：参加了国际游戏展，获得了多个奖项。</li>
-        <li>2022年：推出了《逃离米花市》的扩展包。</li>
-    </ul>
-</section>
-
-<!-- 新闻订阅 -->
-<section id="subscribe">
-    <h2>订阅我们的新闻</h2>
-    <p>输入您的电子邮件以获取最新动态和特别优惠！</p>
-    <form id="subscription-form">
-        <input type="email" id="email" placeholder="请输入您的电子邮件" required>
-        <button type="submit">订阅</button>
-    </form>
-    <p id="subscription-message"></p>
-</section>
-
-<footer>
-    <div class="footer-links">
-        <a href="#">我们的产品</a>
-        <a href="#">联系我们</a>
-        <a href="https://www.12377.cn">网上有害信息举报</a>
+    <h2 class="section-title">我们的产品</h2>
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="https://picsum.photos/250/150?random=1" alt="VideoTube">
+            <h3>VideoTube</h3>
+            <p>超级强大的视频网站，实时更新最新电影或剧集</p>
+            <a href="#" class="btn">立即体验</a>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/250/150?random=2" alt="Minecraft网页版">
+            <h3>Minecraft网页版</h3>
+            <p>网页设计，无需下载即可尽享游戏乐趣</p>
+            <a href="#" class="btn">开始游戏</a>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/250/150?random=3" alt="创客小说网">
+            <h3>创客小说网</h3>
+            <p>即时更新和转载，随时随地观看独家小说</p>
+            <a href="#" class="btn">开始阅读</a>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/250/150?random=4" alt="CodeBot">
+            <h3>CodeBot</h3>
+            <p>AI助手，提升编码效率（即将推出）</p>
+            <a href="#" class="btn">敬请期待</a>
+        </div>
     </div>
-    <p>Copyright ©2024 Longteng. All Rights Reserved. 龙腾游戏工作室 版权所有。</p>
-    <p>联系我们：longtenggamestudio@gmail.com</p>
-    <p>健康游戏忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。</p>
-    <p>适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</p>
-</footer>
 
+    <h2 class="section-title">特色游戏</h2>
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="xw.jpg" alt="规则怪谈">
+            <h3>规则怪谈 - 虚无小区</h3>
+            <p>恐怖规则，至今无人触发的隐藏剧情...</p>
+            <a href="https://wyhc-byte.github.io/guize/" class="btn">开始探索</a>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/250/150?random=6" alt="逃离米花市">
+            <h3>逃离米花市</h3>
+            <p>柯迷？来对地方了</p>
+            <a href="#" class="btn">立即体验</a>
+        </div>
+        <div class="product-card">
+            <img src="dys.jpg" alt="断崖山医院">
+            <h3>断崖山医院</h3>
+            <p>你，真的是你吗...</p>
+            <a href="#" class="btn">开始游戏</a>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/250/150?random=8" alt="校园恋爱物语">
+            <h3>校园恋爱物语</h3>
+            <p>军训让哥们送水，来的怎么是高冷校花</p>
+            <a href="#" class="btn">立刻重生之我在2000年泡校花</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.cac.gov.cn/gzzt/ztzl/zt/esd/A0920010911index_1.htm">我们深刻学习贯彻党的二十大精神</a>
+            <a href="#">联系我们</a>
+            <a href="https://www.12377.cn">网上有害信息举报</a>
+        </div>
+        <p>Copyright ©2024 Longteng. All Rights Reserved. 龙腾游戏工作室 版权所有。</p>
+        <p>联系我们：longtenggamestudio@gmail.com</p>
+        <p>健康游戏忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。</p>
+        <p>适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</p>
+    </footer>
 </body>
 </html>
