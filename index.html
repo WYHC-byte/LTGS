@@ -1,266 +1,618 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>龙腾游戏工作室</title>
+    <title>腾云游戏 - 创造无限可能</title>
+    <link rel="icon" href="logo.ico" type="image/x-icon">
     <style>
+        :root {
+            --primary-color: #44b844;
+            --background-dark: #1f1f1f;
+            --text-color: #ffffff;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Microsoft YaHei', sans-serif;
         }
 
         body {
-            background-color: #f5f5f5;
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: var(--background-dark);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
-        .header {
-            background-color: white;
-            padding: 1rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        /* 导航栏样式 */
+        .navbar {
+            background: #000000;
+            padding: 1rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-        }
-
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('xw.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
-            padding: 12rem 2rem;
-            text-align: center;
-            min-height: 80vh;
+        .logo {
+            height: 2.5rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            gap: 2rem;
             align-items: center;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 800px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-btn {
-            background-color: #e63946;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 30px;
+        .nav-links a {
+            color: var(--text-color);
             text-decoration: none;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .hero-btn:hover {
-            background-color: transparent;
-            border-color: #e63946;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-
-        .products-grid {
-            max-width: 1200px;
-            margin: 2rem auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-card img {
-            width: 100%;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-        }
-
-        .product-card h3 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        .product-card p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .btn {
-            background-color: #0078d4;
-            color: white;
+            font-size: 1rem;
             padding: 0.5rem 1rem;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
         }
 
-        .section-title {
-            text-align: center;
-            margin: 4rem 0 2rem;
-            color: #333;
+        .nav-links a:hover {
+            color: var(--primary-color);
         }
 
-        footer {
-            background-color: #f8f9fa;
+        /* 游戏展示区域 */
+        .games-showcase {
+            margin-top: 4rem;
             padding: 2rem;
+        }
+
+        .game-list {
+            background: #2a2a2a;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .game-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #3a3a3a;
+            cursor: pointer;
+        }
+
+        .game-icon {
+            width: 48px;
+            height: 48px;
+            margin-right: 1rem;
+            background: #3a3a3a;
+            border-radius: 4px;
+        }
+
+        /* 大banner区域 */
+        .hero-banner {
+            height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             margin-top: 4rem;
         }
 
-        .footer-links {
-            text-align: center;
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .footer-links a {
-            color: #666;
+        /* 社交媒体图标 */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #3a3a3a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 页脚样式 */
+        .footer {
+            background: #000000;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-color);
             text-decoration: none;
-            margin: 0 1rem;
         }
 
-        footer p {
-            text-align: center;
-            color: #666;
-            font-size: 0.9rem;
-            margin: 0.5rem 0;
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
         }
 
+        /* 响应式设计 */
         @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: 1fr;
+            .nav-links {
+                display: none;
             }
-            
-            .hero h1 {
+
+            .hero-content h1 {
                 font-size: 2rem;
             }
         }
+
+        /* 新闻模块样式 */
+        .news-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: #3a3a3a;
+            position: relative;
+        }
+
+        .news-content {
+            padding: 1rem;
+        }
+
+        /* 皮肤预览系统 */
+        .skin-preview {
+            background: #2a2a2a;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .skin-viewer {
+            height: 400px;
+            background: #3a3a3a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .skin-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* 服务器状态监控 */
+        .server-status {
+            background: #2a2a2a;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .status-card {
+            background: #3a3a3a;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .status-online {
+            background: #44b844;
+        }
+
+        .status-offline {
+            background: #ff4444;
+        }
+
+        /* 成就系统 */
+        .achievements {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .achievement-card {
+            background: #2a2a2a;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .achievement-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            background: #3a3a3a;
+            border-radius: 8px;
+        }
+
+        /* 多人游戏匹配系统 */
+        .matchmaking {
+            background: #2a2a2a;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .match-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .match-mode {
+            background: #3a3a3a;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .match-mode:hover {
+            background: #4a4a4a;
+        }
+
+        .match-status {
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #3a3a3a;
+            border-radius: 4px;
+        }
+
+        .loading-spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #ffffff;
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .footer-links {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #3a3a3a;
+    }
+
+    .footer-links a {
+        color: var(--primary-color);
+        text-decoration: none;
+        margin: 0 1rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-copyright {
+        text-align: center;
+        color: #888;
+        font-size: 0.9rem;
+    }
+
+    .footer-copyright p {
+        margin: 0.5rem 0;
+    }
+
+    .footer-warning {
+        text-align: center;
+        color: #888;
+        font-size: 0.9rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #3a3a3a;
+    }
+
+    .footer-warning p {
+        margin: 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+        .footer-links a {
+            display: block;
+            margin: 0.5rem 0;
+        }
+    }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">龙腾游戏工作室</div>
-            <div class="nav-links">
-                <a href="#" class="btn">登录</a>
-            </div>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <a href="/" class="logo">腾云游戏</a>
+        <div class="nav-links">
+            <a href="#games-showcase">游戏</a>
+            <a href="#store">商店</a>
+            <a href="#community">社区</a>
+            <a href="#support">支持</a>
+            <a href="#search">搜索</a>
+            <a href="#account">账户</a>
+        </div>
+    </nav>
 
-    <section class="hero">
-        <h1>规则怪谈 - 虚无小区</h1>
-        <p>体验最新的游戏力作，感受恐怖氛围</p>
-        <a href="https://wyhc-byte.github.io/guize/" class="hero-btn">探索更多</a>
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>腾云游戏 - 创造无限可能</h1>
+            <div class="video-preview">
+                <!-- 视频预览区域 -->
+            </div>
+        </div>
     </section>
 
+    <section class="games-showcase">
+        <div class="game-list">
+            <div class="game-item">
+                <div class="game-icon"></div>
+                <h3>校园恋爱物语</h3>
+            </div>
+            <div class="game-item">
+                <div class="game-icon"></div>
+                <h3>规则怪谈 - 虚无小区</h3>
+            </div>
+            <div class="game-item">
+                <div class="game-icon"></div>
+                <h3>逃离米花市</h3>
+            </div>
+            <div class="game-item">
+                <div class="game-icon"></div>
+                <h3>断崖山医院</h3>
+            </div>
+        </div>
+    </section>
 
-    <h2 class="section-title">我们的产品</h2>
-    <div class="products-grid">
-        <div class="product-card">
-            <img src="https://picsum.photos/250/150?random=1" alt="VideoTube">
-            <h3>VideoTube</h3>
-            <p>超级强大的视频网站，实时更新最新电影或剧集</p>
-            <a href="#" class="btn">立即体验</a>
+    <!-- 新闻模块 -->
+    <section class="news-section">
+        <h2>最新动态</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-image"></div>
+                <div class="news-content">
+                    <h3>海洋奇缘2 DLC 驾到</h3>
+                    <p>探索神秘的导路人洞穴和拉罗泰等电影场景...</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image"></div>
+                <div class="news-content">
+                    <h3>新版本更新公告</h3>
+                    <p>全新生物群系和游戏机制现已上线...</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image"></div>
+                <div class="news-content">
+                    <h3>社区活动预告</h3>
+                    <p>参与建筑比赛赢取限定皮肤...</p>
+                </div>
+            </div>
         </div>
-        <div class="product-card">
-            <img src="https://picsum.photos/250/150?random=2" alt="Minecraft网页版">
-            <h3>Minecraft网页版</h3>
-            <p>网页设计，无需下载即可尽享游戏乐趣</p>
-            <a href="#" class="btn">开始游戏</a>
-        </div>
-        <div class="product-card">
-            <img src="https://picsum.photos/250/150?random=3" alt="创客小说网">
-            <h3>创客小说网</h3>
-            <p>即时更新和转载，随时随地观看独家小说</p>
-            <a href="#" class="btn">开始阅读</a>
-        </div>
-        <div class="product-card">
-            <img src="https://picsum.photos/250/150?random=4" alt="CodeBot">
-            <h3>CodeBot</h3>
-            <p>AI助手，提升编码效率（即将推出）</p>
-            <a href="#" class="btn">敬请期待</a>
-        </div>
-    </div>
+    </section>
 
-    <h2 class="section-title">特色游戏</h2>
-    <div class="products-grid">
-        <div class="product-card">
-            <img src="xw.jpg" alt="规则怪谈">
-            <h3>规则怪谈 - 虚无小区</h3>
-            <p>恐怖规则，至今无人触发的隐藏剧情...</p>
-            <a href="https://wyhc-byte.github.io/guize/" class="btn">开始探索</a>
+    <!-- 皮肤预览系统 -->
+    <section class="skin-preview">
+        <h2>皮肤预览</h2>
+        <div class="skin-viewer">
+            <!-- 3D皮肤预览区域 -->
         </div>
-        <div class="product-card">
-            <img src="https://picsum.photos/250/150?random=6" alt="逃离米花市">
-            <h3>逃离米花市</h3>
-            <p>柯迷？来对地方了</p>
-            <a href="#" class="btn">立即体验</a>
+        <div class="skin-controls">
+            <button class="cta-button">旋转</button>
+            <button class="cta-button">动作</button>
+            <button class="cta-button">更换皮肤</button>
         </div>
-        <div class="product-card">
-            <img src="dys.jpg" alt="断崖山医院">
-            <h3>断崖山医院</h3>
-            <p>你，真的是你吗...</p>
-            <a href="#" class="btn">开始游戏</a>
-        </div>
-        <div class="product-card">
-            <img src="https://picsum.photos/250/150?random=8" alt="校园恋爱物语">
-            <h3>校园恋爱物语</h3>
-            <p>军训让哥们送水，来的怎么是高冷校花</p>
-            <a href="#" class="btn">立刻重生之我在2000年泡校花</a>
-        </div>
-    </div>
+    </section>
 
-    <footer>
-        <div class="footer-links">
+    <!-- 服务器状态监控 -->
+    <section class="server-status">
+        <h2>服务器状态</h2>
+        <div class="status-grid">
+            <div class="status-card">
+                <span class="status-indicator status-online"></span>
+                亚洲服务器
+                <p>在线人数：1,234</p>
+            </div>
+            <div class="status-card">
+                <span class="status-indicator status-online"></span>
+                欧洲服务器
+                <p>在线人数：2,345</p>
+            </div>
+            <div class="status-card">
+                <span class="status-indicator status-online"></span>
+                美洲服务器
+                <p>在线人数：3,456</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成就系统 -->
+    <section class="achievements">
+        <h2>玩家成就</h2>
+        <div class="achievement-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon"></div>
+                <h3>探索大师</h3>
+                <p>探索所有生物群系</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon"></div>
+                <h3>建筑师</h3>
+                <p>建造100个独特建筑</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon"></div>
+                <h3>战斗专家</h3>
+                <p>击败所有Boss</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 多人游戏匹配系统 -->
+    <section class="matchmaking">
+        <h2>多人游戏匹配</h2>
+        <div class="match-options">
+            <div class="match-mode">
+                <h3>生存模式</h3>
+                <p>在线：713人</p>
+            </div>
+            <div class="match-mode">
+                <h3>创造模式</h3>
+                <p>在线：362人</p>
+            </div>
+            <div class="match-mode">
+                <h3>冒险模式</h3>
+                <p>在线：347人</p>
+            </div>
+        </div>
+        <div class="match-status">
+            <span class="loading-spinner"></span>
+            正在匹配玩家...
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>游戏</h3>
+                <ul>
+                    <li><a href="#">规则怪谈 - 虚无小区</a></li>
+                    <li><a href="#">逃离米花市</a></li>
+                    <li><a href="#">断崖山医院</a></li>
+                    <li><a href="#">校园恋爱物语</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>商店</h3>
+                <ul>
+                    <li><a href="#">游戏商城</a></li>
+                    <li><a href="#">皮肤</a></li>
+                    <li><a href="#">道具</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>社区</h3>
+                <ul>
+                    <li><a href="#">论坛</a></li>
+                    <li><a href="#">反馈</a></li>
+                    <li><a href="#">创作者中心</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>支持</h3>
+                <ul>
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">下载</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div><div class="footer-links">
             <a href="https://www.cac.gov.cn/gzzt/ztzl/zt/esd/A0920010911index_1.htm">我们深刻学习贯彻党的二十大精神</a>
-            <a href="#">联系我们</a>
+            <a href="#">电子营业执照</a>
             <a href="https://www.12377.cn">网上有害信息举报</a>
+            <a href=""></a>
         </div>
-        <p>Copyright ©2024 Longteng. All Rights Reserved. 龙腾游戏工作室 版权所有。</p>
-        <p>联系我们：longtenggamestudio@gmail.com</p>
-        <p>健康游戏忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。</p>
-        <p>适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</p>
+        
+        <div class="footer-copyright">
+            <p>Copyright ©2024 tenyun. All Rights Reserved. 腾云游戏工作室 版权所有。</p>
+            <p>联系我们：longtenggamestudio@gmail.com</p>
+        </div>
+        
+        <div class="footer-warning">
+            <p>健康游戏忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。</p>
+            <p>适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</p>
+            <p>亲爱的市民朋友，上海警方反诈劝阻电话〝962110”系专门针对遊免您财产被骗受损而设，请您一旦收到来电，立即接听</p>
+            <p>末成年成长关爱热线：021-60371740（服务时间：8:00-23:00）</p>
+            <p>互联网违法不良信息举报邮箱：tousu@service.tenyun.com 互联网违法不良信息举报电话：021-60371750</p>
+        </div>
+
     </footer>
 </body>
 </html>
