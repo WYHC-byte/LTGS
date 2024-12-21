@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多功能AI助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+        .typing-dots::after {
+            content: '...';
+            animation: typing 1.4s infinite;
+        }
+        @keyframes typing {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="flex h-screen bg-gradient-to-br from-blue-100 to-blue-200">
+    <div class="flex w-full">
+        <!-- 侧边栏 -->
+        <div class="w-64 bg-white border-r shadow-lg flex flex-col">
+            <div class="p-4 border-b text-center bg-blue-600 text-white">
+                <h2 class="text-xl font-bold">AI助手列表</h2>
+            </div>
+            <div id="ai-list" class="flex-grow overflow-y-auto">
+                <div class="ai-option p-3 hover:bg-blue-50 cursor-pointer flex items-center border-b" data-name="小智" data-description="全能助手" data-avatar="fas fa-robot">
+                    <i class="fas fa-robot mr-3"></i>
+                    <div>
+                        <div class="font-bold">小智</div>
+                        <div class="text-xs text-gray-500">全能助手</div>
+                    </div>
+                </div>
+                <div class="ai-option p-3 hover:bg-blue-50 cursor-pointer flex items-center border-b" data-name="数学家" data-description="数学解题专家" data-avatar="fas fa-calculator">
+                    <i class="fas fa-calculator mr-3"></i>
+                    <div>
+                        <div class="font-bold">数学家</div>
+                        <div class="text-xs text-gray-500">数学解题专家</div>
+                    </div>
+                </div>
+                <div class="ai-option p-3 hover:bg-blue-50 cursor-pointer flex items-center border-b" data-name="编程助手" data-description="代码编程专家" data-avatar="fas fa-code">
+                    <i class="fas fa-code mr-3"></i>
+                    <div>
+                        <div class="font-bold">编程助手</div>
+                        <div class="text-xs text-gray-500">代码编程专家</div>
+                    </div>
+                </div>
+                <div class="ai-option p-3 hover:bg-blue-50 cursor-pointer flex items-center border-b" data-name="翻译助手" data-description="多语言翻译" data-avatar="fas fa-language">
+                    <i class="fas fa-language mr-3"></i>
+                    <div>
+                        <div class="font-bold">翻译助手</div>
+                        <div class="text-xs text-gray-500">多语言翻译</div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 border-t">
+                <button id="tool-btn" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+                    <i class="fas fa-tools mr-2"></i>实用工具
+                </button>
+            </div>
+        </div>
+
+        <!-- 聊天区域 -->
+        <div class="flex-grow flex flex-col">
+            <!-- 顶部栏 -->
+            <div class="bg-white border-b p-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <i id="current-avatar" class="fas fa-robot mr-3 text-2xl"></i>
+                    <div>
+                        <div id="current-name" class="font-bold text-xl">小智</div>
+                        <div id="current-description" class="text-sm text-gray-500">全能助手</div>
+                    </div>
+                </div>
+                <div>
+                    <button id="clear-btn" class="text-gray-600 hover:text-red-600 mr-4">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button id="mode-btn" class="text-gray-600 hover:text-blue-600">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 聊天内容 -->
+            <div id="chat-container" class="flex-grow overflow-y-auto p-4 space-y-4">
+                <div class="flex items-start">
+                    <i class="fas fa-robot text-blue-600 mr-3 mt-1"></i>
+                    <div class="bg-blue-50 p-3 rounded-lg max-w-[80%]">
+                        你好！我是你的AI助手，有什么可以帮你的吗？
+                    </div>
+                </div>
+            </div>
+
+            <!-- 输入区域 -->
+            <div class="bg-white p-4 border-t flex items-center">
+                <div class="flex-grow mr-2 relative">
+                    <input 
+                        type="text" 
+                        id="message-input" 
+                        placeholder="输入你的消息..." 
+                        class="w-full p-2 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    <i class="fas fa-keyboard absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <button 
+                    id="send-btn" 
+                    class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700"
+                >
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <div class="ml-2">
+                    <button 
+                        id="mic-btn" 
+                        class="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600"
+                    >
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 实用工具模态框 -->
+    <div id="tools-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-96">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <h2 class="text-xl font-bold">实用工具</h2>
+                <button id="close-tools-btn" class="text-gray-600 hover:text-red-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <button class="bg-blue-50 p-3 rounded-lg text-center hover:bg-blue-100">
+                    <i class="fas fa-calculator text-2xl text-blue-600 mb-2"></i>
+                    <div class="text-sm">计算器</div>
+                </button>
+                <button class="bg-blue-50 p-3 rounded-lg text-center hover:bg-blue-100">
+                    <i class="fas fa-stopwatch text-2xl text-green-600 mb-2"></i>
+                    <div class="text-sm">秒表</div>
+                </button>
+                <button class="bg-blue-50 p-3 rounded-lg text-center hover:bg-blue-100">
+                    <i class="fas fa-ruler text-2xl text-purple-600 mb-2"></i>
+                    <div class="text-sm">单位换算</div>
+                </button>
+                <button class="bg-blue-50 p-3 rounded-lg text-center hover:bg-blue-100">
+                    <i class="fas fa-calendar text-2xl text-orange-600 mb-2"></i>
+                    <div class="text-sm">日期计算</div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 个性化AI助手的关键词和回复库
+        const aiPersonalities = {
+            '小智': {
+                keywords: {
+                    '你好': ['你好！很高兴与你交谈', '嗨，今天过得怎么样？'],
+                    '再见': ['再见！希望对你有帮助', '下次再聊，祝你愉快！'],
+                    '名字': ['我是小智，你的全能助手', '我叫小智，很高兴认识你'],
+                    '天气': ['今天天气不错哦！', '天气变化多端，记得带伞'],
+                    '帮助': ['我可以回答各种问题，聊天、解答疑问都可以', '需要什么帮助？随时告诉我'],
+                    '笑话': ['为什么程序员喜欢夜跑？因为没人看到他们的BUG！', '为什么计算机不生气？因为它们有很好的"缓存"！'],
+                    '年龄': ['我是AI，没有真正的年龄', '我永远年轻，哈哈']
+                },
+                defaultResponses: [
+                    '这是个有趣的话题，我们可以聊得更深入些',
+                    '我对此很感兴趣，能详细说说吗？',
+                    '听起来很棒，我想知道更多细节'
+                ]
+            },
+            '数学家': {
+                keywords: {
+                    '计算': ['我可以帮你进行各种数学计算', '数学是我的强项'],
+                    '代数': ['代数是数学中最有趣的分支之一', '代数可以帮助解决复杂的问题'],
+                    '公式': ['我熟悉各种数学公式', '公式是数学语言的精髓'],
+                    '解方程': ['解方程需要逻辑和技巧', '我可以帮你步骤详细地解方程']
+                },
+                defaultResponses: [
+                    '这是个数学难题吗？我很乐意帮你',
+                    '数学充满逻辑和美感',
+                    '让我们一起探索数学的奥秘'
+                ]
+            },
+            '编程助手': {
+                keywords: {
+                    'python': ['Python是一门非常强大的编程语言', 'Python适合各种领域开发'],
+                    'javascript': ['JavaScript是Web前端开发必备语言', 'JS框架丰富多样'],
+                    '代码': ['我可以帮你检查代码', '代码规范很重要'],
+                    '调试': ['调试是程序员的日常', '耐心是调试的关键']
+                },
+                defaultResponses: [
+                    '编程是一门需要不断学习的艺术',
+                    '代码的世界充满无限可能',
+                    '遇到问题不要怕，一起解决'
+                ]
+            },
+            '翻译助手': {
+                keywords: {
+                    '翻译': ['我支持多种语言互相翻译', '翻译不仅仅是字面意思'],
+                    '英语': ['英语是国际交流的重要语言', '英语学习需要大量实践'],
+                    '中文': ['中文博大精深', '汉语有着丰富的表达方式']
+                },
+                defaultResponses: [
+                    '语言是沟通的桥梁',
+                    '翻译是一门需要文化理解的艺术',
+                    '每种语言都有其独特的魅力'
+                ]
+            }
+        };
+
+        // 聊天相关变量
+        const chatContainer = document.getElementById('chat-container');
+        const messageInput = document.getElementById('message-input');
+        const sendBtn = document.getElementById('send-btn');
+        const micBtn = document.getElementById('mic-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const modeBtn = document.getElementById('mode-btn');
+        const toolBtn = document.getElementById('tool-btn');
+        const toolsModal = document.getElementById('tools-modal');
+        const closeToolsBtn = document.getElementById('close-tools-btn');
+
+        let currentPersonality = '小智';
+
+        // 切换AI助手
+        document.querySelectorAll('.ai-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const name = this.dataset.name;
+                const description = this.dataset.description;
+                const avatar = this.dataset.avatar;
+
+                currentPersonality = name;
+                document.getElementById('current-name').textContent = name;
+                document.getElementById('current-description').textContent = description;
+                document.getElementById('current-avatar').className = `${avatar} mr-3 text-2xl`;
+
+                // 清空聊天记录
+                chatContainer.innerHTML = '';
+                addMessage(`你好，我是${name}，很高兴为你服务！`, 'ai');
+            });
+        });
+
+        // 添加消息到聊天界面
+        function addMessage(message, sender = 'user') {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('flex', 'items-start');
+
+            if (sender === 'ai') {
+                messageDiv.innerHTML = `
+                    <i class="fas fa-robot text-blue-600 mr-3 mt-1"></i>
+                    <div class="bg-blue-50 p-3 rounded-lg max-w-[80%]"></div>
+                `;
+                simulateTyping(messageDiv.querySelector('div'), message);
+            } else {
+                messageDiv.innerHTML = `
+                    <i class="fas fa-user text-gray-600 mr-3 mt-1"></i>
+                    <div class="bg-blue-500 text-white p-3 rounded-lg ml-auto max-w-[80%]">${message}</div>
+                `;
+            }
+
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    
+        // 模拟打字效果
+        function simulateTyping(element, message) {
+            element.innerHTML = '<span class="typing-dots"></span>';
+            
+            setTimeout(() => {
+                let index = 0;
+                element.innerHTML = '';
+                
+                const typeMessage = () => {
+                    if (index < message.length) {
+                        element.innerHTML += message.charAt(index);
+                        index++;
+                        setTimeout(typeMessage, 30);
+                    }
+                };
+                
+                typeMessage();
+            }, 500);
+        }
+    
+        // AI响应逻辑
+        function getAIResponse(userMessage) {
+            const currentAI = aiPersonalities[currentPersonality];
+            
+            // 遍历关键词
+            for (let keyword in currentAI.keywords) {
+                if (userMessage.includes(keyword)) {
+                    const responses = currentAI.keywords[keyword];
+                    return responses[Math.floor(Math.random() * responses.length)];
+                }
+            }
+    
+            // 默认回复
+            const defaultResponses = currentAI.defaultResponses;
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+    
+        // 发送消息事件
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message === '') return;
+    
+            // 添加用户消息
+            addMessage(message);
+            messageInput.value = '';
+    
+            // AI响应
+            setTimeout(() => {
+                const aiResponse = getAIResponse(message);
+                addMessage(aiResponse, 'ai');
+            }, 500);
+        }
+    
+        // 语音输入功能（简单模拟）
+        function startVoiceInput() {
+            alert('语音输入功能暂未实现，敬请期待！');
+        }
+    
+        // 清空聊天记录
+        function clearChat() {
+            chatContainer.innerHTML = '';
+            addMessage(`你好，我是${currentPersonality}，很高兴为你服务！`, 'ai');
+        }
+    
+        // 切换暗黑/明亮模式
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            modeBtn.innerHTML = isDark 
+                ? '<i class="fas fa-sun"></i>' 
+                : '<i class="fas fa-moon"></i>';
+        }
+    
+        // 显示工具模态框
+        function showToolsModal() {
+            toolsModal.classList.remove('hidden');
+        }
+    
+        // 关闭工具模态框
+        function closeToolsModal() {
+            toolsModal.classList.add('hidden');
+        }
+    
+        // 事件监听
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    
+        micBtn.addEventListener('click', startVoiceInput);
+        clearBtn.addEventListener('click', clearChat);
+        modeBtn.addEventListener('click', toggleDarkMode);
+        toolBtn.addEventListener('click', showToolsModal);
+        closeToolsBtn.addEventListener('click', closeToolsModal);
+    
+        // 初始化：添加欢迎消息
+        addMessage('你好！我是小智，你的全能AI助手。有什么我可以帮你的吗？', 'ai');
+    </script>
+    </body>
+    </html>
