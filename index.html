@@ -1,528 +1,291 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Tenyun 腾云</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7032575091858704" crossorigin="anonymous"></script>
+    <title>AI工具集 - 提升您的工作效率</title>
     <style>
-        .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1920/1080');
-            background-size: cover;
-            background-position: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .hero {
+            padding: 8rem 1rem 4rem;
+            text-align: center;
+            background: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .features {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #6366f1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        .pricing {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .pricing h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .price-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .price-card.popular {
+            border: 2px solid #6366f1;
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #6366f1;
+            margin: 1rem 0;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
         }
     </style>
 </head>
-<body class="bg-gray-100">
-    <header class="fixed w-full z-50 bg-white shadow-md">
-        <div class="container mx-auto flex justify-between items-center p-4">
-            <div class="flex items-center">
-                <h1 class="text-2xl font-bold text-blue-600">Tenyun 腾云</h1>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">AI工具集</div>
+            <div class="nav-links">
+                <a href="#features">功能</a>
+                <a href="#pricing">价格</a>
+                <a href="#contact">联系我们</a>
             </div>
-            <nav class="space-x-6">
-                <a href="index.html" class="text-gray-800 hover:text-blue-600">首页</a>
-                <a href="cp.html" class="text-gray-800 hover:text-blue-600">产品</a>
-                <a href="jj.html" class="text-gray-800 hover:text-blue-600">解决方案</a>
-                <a href="kfz.html" class="text-gray-800 hover:text-blue-600">开发者</a>
-            </nav>
-        </div>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero-bg text-white h-screen flex items-center justify-center text-center">
-            <div class="container mx-auto px-4">
-                <h2 class="text-6xl font-bold mb-6 leading-tight">
-                    重新定义 云 · 智能
-                </h2>
-                <p class="text-2xl mb-10 max-w-3xl mx-auto">
-                    腾云科技 - 为企业提供全面的数字化转型解决方案，融合云计算、人工智能和大数据技术
-                </p>
-            </div>
-        </section>
+    <section class="hero">
+        <h1>用AI提升工作效率</h1>
+        <p>智能化处理文档、图片、视频，让您的工作更轻松、更高效</p>
+        <a href="#" class="cta-button">免费试用</a>
+    </section>
 
-        <section class="py-16 bg-white">
-            <div class="container mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-16">公司信息</h2>
-                
-                <!-- 关于腾云 -->
-                <div class="mb-20">
-                    <div class="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h3 class="text-3xl font-bold mb-6">  关于腾云</h3>
-                            <p class="text-lg text-gray-600 leading-relaxed mb-6">
-                                    腾云科技是一家领先的科技创新企业，专注于为全球客户提供领先的云计算、人工智能和数字化转型解决方案。自成立以来，我们始终致力于技术创新，推动产业升级，为客户创造更大的价值。
-                            </p>
-                        </div>
-                        <div>
-                            <img src="woshou.jpg" alt="关于腾云" class="rounded-lg shadow-lg"/>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- 公司愿景 -->
-                <div class="bg-gray-50 p-12 rounded-2xl mb-20">
-                    <h3 class="text-3xl font-bold text-center mb-12">公司愿景</h3>
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="text-center">
-                            <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-semibold mb-2">愿景</h4>
-                            <p class="text-gray-600">成为全球领先的科技创新企业</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-semibold mb-2">使命</h4>
-                            <p class="text-gray-600">用科技创新推动产业升级</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-semibold mb-2">价值观</h4>
-                            <p class="text-gray-600">创新、责任、开放、共赢</p>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- 投资者关系 -->
-                <div class="mb-20">
-                    <h3 class="text-3xl font-bold mb-8">投资者关系</h3>
-                    <div class="grid md:grid-cols-4 gap-6">
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <h4 class="font-semibold mb-2">财务报告</h4>
-                            <p class="text-gray-600 mb-4">查看最新财务数据和报告</p>
-                            <a href="#" class="text-blue-600 hover:underline">了解更多 →</a>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <h4 class="font-semibold mb-2">公司公告</h4>
-                            <p class="text-gray-600 mb-4">重要公告和信息披露</p>
-                            <a href="#" class="text-blue-600 hover:underline">了解更多 →</a>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <h4 class="font-semibold mb-2">股票信息</h4>
-                            <p class="text-gray-600 mb-4">实时股票数据和走势</p>
-                            <a href="#" class="text-blue-600 hover:underline">了解更多 →</a>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <h4 class="font-semibold mb-2">投资者活动</h4>
-                            <p class="text-gray-600 mb-4">投资者会议和活动日程</p>
-                            <a href="#" class="text-blue-600 hover:underline">了解更多 →</a>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- 管理团队 -->
-                <div class="mb-20">
-                    <h3 class="text-3xl font-bold mb-8">管理团队</h3>
-                    <div class="grid md:grid-cols-4 gap-8">
-                        <div class="text-center">
-                            <img src="hayden.jpg" alt="CEO" class="w-40 h-40 rounded-full mx-auto mb-4"/>
-                            <h4 class="text-xl font-semibold">Hayden</h4>
-                            <p class="text-gray-600">首席执行官</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="wyhc.jpg" alt="CTO" class="w-40 h-40 rounded-full mx-auto mb-4"/>
-                            <h4 class="text-xl font-semibold">WYHC</h4>
-                            <p class="text-gray-600">首席技术官</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="kele.jpg" alt="CFO" class="w-40 h-40 rounded-full mx-auto mb-4"/>
-                            <h4 class="text-xl font-semibold">可乐</h4>
-                            <p class="text-gray-600">首席财务官</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="tianqing.jpg" alt="COO" class="w-40 h-40 rounded-full mx-auto mb-4"/>
-                            <h4 class="text-xl font-semibold">天晴</h4>
-                            <p class="text-gray-600">首席运营官</p>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- 公司文化 -->
-                <div>
-                    <h3 class="text-3xl font-bold mb-8">公司文化</h3>
-                    <div class="grid md:grid-cols-2 gap-12">
-                        <div>
-                            <img src="gongsi.jpg" alt="公司文化" class="rounded-lg shadow-lg mb-6"/>
-                            <h4 class="text-xl font-semibold mb-4">创新驱动发展</h4>
-                            <p class="text-gray-600">
-                                腾云倡导开放、创新的企业文化，鼓励员工勇于创新、追求卓越。我们重视人才培养，为员工提供广阔的发展平台和机会。通过持续创新和技术突破，推动企业与员工共同成长。
-                            </p>
-                        </div>
-                        <div>
-                            <div class="grid grid-cols-2 gap-6">
-                                <div class="bg-gray-50 p-6 rounded-lg">
-                                    <h5 class="font-semibold mb-2">创新精神</h5>
-                                    <p class="text-gray-600">鼓励创新思维，追求技术突破</p>
-                                </div>
-                                <div class="bg-gray-50 p-6 rounded-lg">
-                                    <h5 class="font-semibold mb-2">团队协作</h5>
-                                    <p class="text-gray-600">倡导开放协作，共创价值</p>
-                                </div>
-                                <div class="bg-gray-50 p-6 rounded-lg">
-                                    <h5 class="font-semibold mb-2">客户至上</h5>
-                                    <p class="text-gray-600">以客户需求为导向，持续创造价值</p>
-                                </div>
-                                <div class="bg-gray-50 p-6 rounded-lg">
-                                    <h5 class="font-semibold mb-2">持续学习</h5>
-                                    <p class="text-gray-600">保持学习热情，追求专业进步</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
+    <section class="features" id="features">
+        <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3>智能写作</h3>
+            <p>使用AI生成高质量文章、报告和营销文案，节省写作时间。</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>图像处理</h3>
+            <p>一键生成精美图片，支持智能修图、风格转换等多种功能。</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎥</div>
+            <h3>视频制作</h3>
+            <p>快速创建专业级视频内容，支持自动剪辑和特效添加。</p>
+        </div>
+    </section>
 
-        <section class="container mx-auto py-16">
-            <h3 class="text-4xl font-bold text-center mb-12">我们的核心服务</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <svg class="w-16 h-16 mx-auto mb-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                    </svg>
-                    <h4 class="text-xl font-semibold mb-4">云计算服务</h4>
-                    <p class="text-gray-600">
-                        提供弹性、安全、高性能的云基础设施解决方案
-                    </p>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <svg class="w-16 h-16 mx-auto mb-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
-                    </svg>
-                    <h4 class="text-xl font-semibold mb-4">AI智能解决方案</h4>
-                    <p class="text-gray-600">
-                        先进的人工智能技术，助力企业智能化转型
-                    </p>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <svg class="w-16 h-16 mx-auto mb-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                    </svg>
-                    <h4 class="text-xl font-semibold mb-4">数据安全</h4>
-                    <p class="text-gray-600">
-                        全方位数据保护，确保企业信息安全
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-gray-50 py-16">
-            <div class="container mx-auto">
-                <h3 class="text-4xl font-bold text-center mb-12">最新动态</h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h4 class="text-xl font-semibold mb-4">AI技术突破</h4>
-                        <p class="text-gray-500 mb-4">2024年6月15日</p>
-                        <p>推出全新AI算法，性能提升50%，引领行业创新</p>
-                        <a href="#" class="text-blue-600 mt-4 inline-block hover:underline">
-                            了解详情 →
-                        </a>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h4 class="text-xl font-semibold mb-4">云平台全面升级</h4>
-                        <p class="text-gray-500 mb-4">2024年5月20日</p>
-                        <p>企业级云服务基础架构重大更新，提供更优秀的性能</p>
-                        <a href="#" class="text-blue-600 mt-4 inline-block hover:underline">
-                            了解详情 →
-                        </a>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h4 class="text-xl font-semibold mb-4">开发者大会</h4>
-                        <p class="text-gray-500 mb-4">2024年4月10日</p>
-                        <p>年度技术创新盛会即将开启，诚邀技术精英共同探讨</p>
-                        <a href="#" class="text-blue-600 mt-4 inline-block hover:underline">
-                            了解详情 →
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    
-        <!-- 产品服务 -->
-        <section class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-bold text-center mb-12">热门云服务产品</h2>
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-xl transition group">
-                    <div class="bg-blue-50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-100 transition">
-                        <i class="fas fa-server text-4xl text-blue-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">云服务器</h3>
-                    <p class="text-gray-600 mb-4">安全稳定的计算服务</p>
-                    <a href="#" class="text-blue-600 hover:text-blue-800">了解详情 →</a>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-xl transition group">
-                    <div class="bg-green-50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:bg-green-100 transition">
-                        <i class="fas fa-database text-4xl text-green-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">腾云高性能AI</h3>
-                    <p class="text-gray-600 mb-4">新一代多模态人机交互系统</p>
-                    <a href="ai.html" class="text-green-600 hover:text-green-800">了解详情 →</a>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-xl transition group">
-                    <div class="bg-purple-50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-100 transition">
-                        <i class="fas fa-com text-4xl text-purple-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">域名注册</h3>
-                    <p class="text-gray-600 mb-4">多样式顶级域名注册</p>
-                    <a href="domain.html" class="text-purple-600 hover:text-purple-800">了解详情 →</a>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-xl transition group">
-                    <div class="bg-yellow-50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-100 transition">
-                        <i class="fas fa-chart-line text-4xl text-yellow-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">大数据分析</h3>
-                    <p class="text-gray-600 mb-4">智能洞察企业价值</p>
-                    <a href="dashuju.html" class="text-yellow-600 hover:text-yellow-800">了解详情 →</a>
-                </div>
-            </div>
-        </section>
-
-        
-    
-        <!-- 解决方案 -->
-        <section class="bg-gray-100 py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-12">行业实例</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-4">企业行业</h3>
-                            <p class="text-gray-600">为 湖南琦尔设备责任有限公司 制作官网</p>
-                        </div>
-                        <img src="hn.jpg" alt="金融行业" class="w-full h-48 object-cover">
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-4">游戏行业</h3>
-                            <p class="text-gray-600">为 腾云游戏 制作官方网站</p>
-                        </div>
-                        <img src="ty.jpg" alt="医疗卫生" class="w-full h-48 object-cover">
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-4">人工智能服务</h3>
-                            <p class="text-gray-600">提供编程机器人： codebot 的免费使用</p>
-                        </div>
-                        <img src="ai.jpg" alt="政务服务" class="w-full h-48 object-cover">
-                    </div>
-                </div>
-            </div>
-        </section>
-    
-        <!-- 价格与套餐 -->
-        <section class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-bold text-center mb-12">灵活的定价方案</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-md p-8 text-center border-2 border-transparent hover:border-blue-500 transition">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-600">基础版</h3>
-                    <div class="text-4xl font-bold mb-6">
-                        ¥99 
-                        <span class="text-base text-gray-500">/月</span>
-                    </div>
-                    <ul class="mb-8 space-y-4 text-gray-700">
-                        <li>1核 2G内存</li>
-                        <li>50G SSD存储</li>
-                        <li>1Mbps带宽</li>
-                    </ul>
-                    <a href="#" class="block bg-blue-50 text-blue-600 py-3 rounded-lg hover:bg-blue-100 transition">
-                        选择方案
-                    </a>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-8 text-center border-2 border-blue-500 scale-105">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-600">专业版</h3>
-                    <div class="text-4xl font-bold mb-6">
-                        ¥299 
-                        <span class="text-base text-gray-500">/月</span>
-                    </div>
-                    <ul class="mb-8 space-y-4 text-gray-700">
-                        <li>4核 8G内存</li>
-                        <li>200G SSD存储</li>
-                        <li>5Mbps带宽</li>
-                        <li>7*24技术支持</li>
-                    </ul>
-                    <a href="#" class="block bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition">
-                        立即购买
-                    </a>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-8 text-center border-2 border-transparent hover:border-blue-500 transition">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-600">企业版</h3>
-                    <div class="text-4xl font-bold mb-6">
-                        ¥599 
-                        <span class="text-base text-gray-500">/月</span>
-                    </div>
-                    <ul class="mb-8 space-y-4 text-gray-700">
-                        <li>8核 16G内存</li>
-                        <li>500G SSD存储</li>
-                        <li>10Mbps带宽</li>
-                        <li>专属技术顾问</li>
-                    </ul>
-                    <a href="#" class="block bg-blue-50 text-blue-600 py-3 rounded-lg hover:bg-blue-100 transition">
-                        联系销售
-                    </a>
-                </div>
-            </div>
-        </section>
-    
-        <!-- 联系我们 -->
-        <section class="bg-gray-100 py-16">
-            <div class="container mx-auto px-4">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 class="text-4xl font-bold mb-6">准备好开始您的云之旅了吗？</h2>
-                        <p class="text-xl text-gray-600 mb-8">
-                            我们的专家团队随时为您提供个性化的云服务咨询和技术支持。无论您是初创企业还是大型机构，我们都能为您量身定制最佳云解决方案。
-                        </p>
-                        <a href="#" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
-                            免费咨询
-                        </a>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-8">
-                        <form>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">姓名</label>
-                                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">企业名称</label>
-                                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">联系电话</label>
-                                <input type="tel" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">您的需求</label>
-                                <textarea class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
-                                提交需求
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-800 text-white py-16">
-        <div class="container mx-auto grid md:grid-cols-5 gap-8">
-            <div>
-                <h4 class="font-bold mb-4 text-lg">公司</h4>
-                <ul class="space-y-2">
-                    <li><a href="about.html" class="hover:text-blue-300">关于腾云</a></li>
-                    <li><a href="about.html" class="hover:text-blue-300">公司愿景</a></li>
-                    <li><a href="about.html" class="hover:text-blue-300">投资者关系</a></li>
-                    <li><a href="bout.html" class="hover:text-blue-300">管理团队</a></li>
-                    <li><a href="about.html" class="hover:text-blue-300">公司文化</a></li>
+    <section class="pricing" id="pricing">
+        <h2>选择适合您的方案</h2>
+        <div class="pricing-cards">
+            <div class="price-card">
+                <h3>基础版</h3>
+                <div class="price">¥99/月</div>
+                <ul>
+                    <li>基础AI功能</li>
+                    <li>每月100次使用额度</li>
+                    <li>标准客服支持</li>
                 </ul>
+                <a href="#" class="cta-button">立即开始</a>
             </div>
-
-            <div>
-                <h4 class="font-bold mb-4 text-lg">产品服务</h4>
-                <ul class="space-y-2">
-                    <li><a href="https://cloud.tenyun.us.kg" class="hover:text-blue-300">云服务</a></li>
-                    <li><a href="https://ai.tenyun.us.kg" class="hover:text-blue-300">AI平台</a></li>
-                    <li><a href="https://game.tenyun.us.kg" class="hover:text-blue-300">腾云游戏</a></li>
-                    <li><a href="https://domain.tenyun.us.kg" class="hover:text-blue-300">域名注册</a></li>
-                    <li><a href="https://icp.tenyun.us.kg" class="hover:text-blue-300">ICP备案</a></li>
+            <div class="price-card popular">
+                <h3>专业版</h3>
+                <div class="price">¥299/月</div>
+                <ul>
+                    <li>全部AI功能</li>
+                    <li>无限使用额度</li>
+                    <li>24/7专属客服</li>
                 </ul>
+                <a href="#" class="cta-button">立即开始</a>
             </div>
-
-            <div>
-                <h4 class="font-bold mb-4 text-lg">开发者</h4>
-                <ul class="space-y-2">
-                    <li><a href="https://kfz.tenyun.us.kg" class="hover:text-blue-300">开发者文档</a></li>
-                    <li><a href="https://kfz.tenyun.us.kg" class="hover:text-blue-300">API参考</a></li>
-                    <li><a href="https://kfz.tenyun.us.kg" class="hover:text-blue-300">开发者社区</a></li>
-                    <li><a href="https://kfz.tenyun.us.kg" class="hover:text-blue-300">技术博客</a></li>
-                    <li><a href="https://kfz.tenyun.us.kg" class="hover:text-blue-300">在线培训</a></li>
+            <div class="price-card">
+                <h3>企业版</h3>
+                <div class="price">定制价格</div>
+                <ul>
+                    <li>定制化解决方案</li>
+                    <li>API接口支持</li>
+                    <li>专属技术支持</li>
                 </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold mb-4 text-lg">客户支持</h4>
-                <ul class="space-y-2">
-                    <li><a href="https://support.tenyun.us.kg" class="hover:text-blue-300">技术支持</a></li>
-                    <li><a href="https://support.tenyun.us.kg" class="hover:text-blue-300">售后服务</a></li>
-                    <li><a href="https://support.tenyun.us.kg" class="hover:text-blue-300">常见问题</a></li>
-                    <li><a href="https://support.tenyun.us.kg" class="hover:text-blue-300">联系客服</a></li>
-                    <li><a href="https://support.tenyun.us.kg" class="hover:text-blue-300">服务状态</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold mb-4 text-lg">资源</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-blue-300">白皮书</a></li>
-                    <li><a href="#" class="hover:text-blue-300">案例研究</a></li>
-                    <li><a href="#" class="hover:text-blue-300">资讯中心</a></li>
-                    <li><a href="#" class="hover:text-blue-300">活动日历</a></li>
-                    <li><a href="#" class="hover:text-blue-300">资源下载</a></li>
-                </ul>
+                <a href="#" class="cta-button">联系我们</a>
             </div>
         </div>
+    </section>
 
-        <div class="container mx-auto mt-12 pt-8 border-t border-gray-700 grid md:grid-cols-3 gap-8">
-            <div>
-                <h4 class="font-bold mb-4 text-lg">联系方式</h4>
-                <p>总部地址：北京市海淀区</p>
-                <p>电话：400-xxx-xxxx</p>
-                <p>邮箱：contact@tenyun.com</p>
-            </div>
-
-            <div>
-                <h4 class="font-bold mb-4 text-lg">法律与合规</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-blue-300">隐私政策</a></li>
-                    <li><a href="#" class="hover:text-blue-300">使用条款</a></li>
-                    <li><a href="#" class="hover:text-blue-300">版权声明</a></li>
-                    <li><a href="#" class="hover:text-blue-300">合规报告</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold mb-4 text-lg">订阅我们</h4>
-                <div class="flex space-x-4 mb-4">
-                    <a href="#" class="hover:text-blue-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.532 2.881 5.92 3.001-.419-1.796.944-3.527 2.807-3.527.824 0 1.572.349 2.096.907.654-.128 1.27-.367 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489v.385z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="hover:text-blue-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="hover:text-blue-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="bg-white rounded-lg p-3">
-                    <p class="text-gray-800 mb-2">订阅我们的新闻通讯</p>
-                    <div class="flex">
-                        <input type="email" placeholder="输入您的邮箱" class="flex-grow px-3 py-2 border rounded-l text-gray-800">
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-r">订阅</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container mx-auto text-center mt-8 pt-4 border-t border-gray-700">
-            <p>© 2024 腾云科技 Tenyun Technology. 保留所有权利 | 沪ICP备17283839号 | 增值电信业务经营许可证</p>
-        </div>
+    <footer id="contact">
+        <p>© 2025 AI工具集. 保留所有权利.</p>
+        <p>联系我们: contact@aitools.com</p>
     </footer>
+
+    <script>
+        // 简单的滚动动画
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 添加滚动检测，改变导航栏样式
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = '#fff';
+                header.style.color = '#333';
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.style.color = '#333';
+                });
+            } else {
+                header.style.background = 'linear-gradient(135deg, #6366f1, #8b5cf6)';
+                header.style.color = '#fff';
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.style.color = '#fff';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
